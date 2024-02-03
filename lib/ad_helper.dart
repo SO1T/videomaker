@@ -4,7 +4,7 @@ class AdManager {
   InterstitialAd? interstitialAd;
   bool isLoaded = false;
 
-  final String _adUnitId = 'ca-app-pub-7064550085295343/1466706864';
+  final String _adUnitId = '';
 
   void loadAd() {
     InterstitialAd.load(
