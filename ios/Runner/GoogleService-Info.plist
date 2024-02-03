@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCczpMQndVjLHygYA5I0LBXUGrqplb_cwE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>132988310769</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.techunion.videomaker</string>
+	<key>PROJECT_ID</key>
+	<string>videomaker-app-587b2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>videomaker-app-587b2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:132988310769:ios:d4929f4cacc15cdc604550</string>
+</dict>
+</plist>
