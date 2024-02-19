@@ -246,5 +246,9 @@
 	</array>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-7064550085295343~7202211280</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>https:</string>
+	</array>
 </dict>
 </plist>

@@ -70,8 +70,6 @@ class _HomeViewState extends State<HomeView> {
                             if (result == null) {
                               _adManager.showAdCallback();
                             }
-                            print(234);
-                            print(result);
                           },
                           child: Container(
                             padding: const EdgeInsets.all(4),
@@ -81,34 +79,52 @@ class _HomeViewState extends State<HomeView> {
                             ),
                           ),
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(4),
-                          color: Colors.white,
-                          child: const Image(
-                            image: AssetImage('lib/assets/icon2.png'),
+                        // Container(
+                        //   padding: const EdgeInsets.all(4),
+                        //   color: Colors.white,
+                        //   child: const Image(
+                        //     image: AssetImage('lib/assets/icon2.png'),
+                        //   ),
+                        // ),
+                        InkWell(
+                          onTap: () async {
+                            final result =
+                                await Navigator.pushNamed(context, '/apps');
+                            if (result == null) {
+                              _adManager.showAdCallback();
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            color: Colors.white,
+                            child: const Image(
+                              image: AssetImage('lib/assets/icon3.png'),
+                            ),
                           ),
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(4),
-                          color: Colors.white,
-                          child: const Image(
-                            image: AssetImage('lib/assets/icon3.png'),
+                        InkWell(
+                          onTap: () async {
+                            final result =
+                                await Navigator.pushNamed(context, '/rentals');
+                            if (result == null) {
+                              _adManager.showAdCallback();
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            color: Colors.white,
+                            child: const Image(
+                              image: AssetImage('lib/assets/icon4.png'),
+                            ),
                           ),
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(4),
-                          color: Colors.white,
-                          child: const Image(
-                            image: AssetImage('lib/assets/icon4.png'),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(4),
-                          color: Colors.white,
-                          child: const Image(
-                            image: AssetImage('lib/assets/icon5.png'),
-                          ),
-                        ),
+                        // Container(
+                        //   padding: const EdgeInsets.all(4),
+                        //   color: Colors.white,
+                        //   child: const Image(
+                        //     image: AssetImage('lib/assets/icon5.png'),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
