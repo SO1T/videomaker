@@ -2,23 +2,25 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Rental {
-  Rental({
-    required this.title,
-    required this.description,
-    required this.address,
-    required this.googlemaps,
-    required this.guarantee,
-    required this.instagram,
-    required this.logo,
-    required this.phone,
-    required this.techlist,
-    required this.telegram,
-    required this.website,
-    required this.whatsapp,
-  });
+  Rental(
+    this.id,
+    this.title,
+    this.description,
+    this.logo,
+    this.guarantee,
+    this.phone,
+    this.instagram,
+    this.techlist,
+    this.telegram,
+    this.website,
+    this.address,
+    this.googlemaps,
+    this.city,
+  );
 
   Rental.fromSnapshot(QueryDocumentSnapshot<Map<String, dynamic>> snapshot)
-      : title = snapshot.data()['title'] as String,
+      : id = snapshot.id,
+        title = snapshot.data()['title'] as String,
         description = snapshot.data()['description'] as String,
         address = snapshot.data()['address'] as String,
         googlemaps = snapshot.data()['googlemaps'] as String,
@@ -29,8 +31,9 @@ class Rental {
         techlist = snapshot.data()['techlist'] as String,
         telegram = snapshot.data()['telegram'] as String,
         website = snapshot.data()['website'] as String,
-        whatsapp = snapshot.data()['whatsapp'] as String;
+        city = snapshot.data()['city'] as String;
 
+  final String id;
   final String title;
   final String description;
   final String logo;
@@ -40,9 +43,9 @@ class Rental {
   final String techlist;
   final String telegram;
   final String website;
-  final String whatsapp;
   final String address;
   final String googlemaps;
+  final String city;
 }
 
 @immutable

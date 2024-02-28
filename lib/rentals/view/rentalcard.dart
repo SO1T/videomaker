@@ -1,68 +1,184 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:videomaker/rental_details/rentaldetails.dart';
 import 'package:videomaker/rentals/bloc/rentals_state.dart';
 
-class RentalCard extends StatelessWidget {
+class RentalCard extends StatefulWidget {
   const RentalCard({super.key, required this.rental});
   final Rental rental;
 
   @override
+  State<RentalCard> createState() => _RentalCardState();
+}
+
+class _RentalCardState extends State<RentalCard> {
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    analytics.setAnalyticsCollectionEnabled(true);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.black,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.network(
-                rental.logo,
-                width: MediaQuery.of(context).size.width * 0.25,
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: InkWell(
+        onTap: () async {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => RentalDetail(
+                rental: widget.rental,
               ),
-              const SizedBox(
-                width: 20,
-              ),
-              Flexible(
-                child: Column(
+            ),
+          );
+          await analytics.logEvent(
+              name: 'rental_page',
+              parameters: {"rental_name": widget.rental.title});
+        },
+        child: Card(
+          color: Colors.black,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Image(
+                      image: CachedNetworkImageProvider(
+                        widget.rental.logo,
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      rental.title,
-                      style: const TextStyle(
-                        fontSize: 24,
-                        color: Color(0xFFffffff),
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    Text(
-                      rental.description,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFFffffff),
-                        fontWeight: FontWeight.w500,
+                    Flexible(
+                      child: Column(
+                        children: [
+                          Text(
+                            widget.rental.title,
+                            softWrap: true,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              color: Color(0xFFffffff),
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-        ],
+                const SizedBox(
+                  height: 5,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RichText(
+                      softWrap: true,
+                      text: TextSpan(
+                        text: 'Місто: ',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFFffffff),
+                          fontWeight: FontWeight.w700,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: widget.rental.city,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFFffffff),
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        text: 'Умови видачі: ',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFFffffff),
+                          fontWeight: FontWeight.w700,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: widget.rental.guarantee.join(', '),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFFffffff),
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        text: 'Телефон: ',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFFffffff),
+                          fontWeight: FontWeight.w700,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: widget.rental.phone,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFFffffff),
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    FilledButton(
+                      onPressed: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RentalDetail(
+                              rental: widget.rental,
+                            ),
+                          ),
+                        );
+                        await analytics.logEvent(
+                            name: 'rental_page',
+                            parameters: {"rental_name": widget.rental.title});
+                      },
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                        side: const BorderSide(
+                          width: 3.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      child: const Text('Детальніше'),
+                    )
+                  ],
+                ),
+              ]),
+        ),
       ),
     );
-  }
-}
-
-Future<void> _launchUrl(link) async {
-  if (!await launchUrl(
-    Uri.parse('https://apps.apple.com/app/id$link'),
-    mode: LaunchMode.externalApplication,
-  )) {
-    throw Exception('Could not launch $link');
   }
 }

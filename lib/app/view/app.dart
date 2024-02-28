@@ -20,7 +20,7 @@ class App extends StatelessWidget {
       routes: {
         '/focus-factor': (context) => const CalculatorPage(),
         '/apps': (context) => const AppsPage(),
-        '/rentals': (context) => const RentalsPage()
+        '/rentals': (context) => const RentalsPage(),
       },
       home: const HomeView(),
     );
