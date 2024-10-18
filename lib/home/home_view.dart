@@ -79,13 +79,23 @@ class _HomeViewState extends State<HomeView> {
                             ),
                           ),
                         ),
-                        // Container(
-                        //   padding: const EdgeInsets.all(4),
-                        //   color: Colors.white,
-                        //   child: const Image(
-                        //     image: AssetImage('lib/assets/icon2.png'),
-                        //   ),
-                        // ),
+                        InkWell(
+                          onTap: () async {
+                            final result =
+                                await Navigator.pushNamed(context, '/memory');
+                            if (result == null) {
+                              _adManager.showAdCallback();
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            color: Colors.white,
+                            child: const Image(
+                              image: AssetImage('lib/assets/icon2.png'),
+                            ),
+                          ),
+                        ),
+
                         // InkWell(
                         //   onTap: () async {
                         //     final result =

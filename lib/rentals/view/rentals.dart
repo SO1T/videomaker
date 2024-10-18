@@ -104,8 +104,8 @@ class _RentalsViewState extends State<RentalsView> {
           const SizedBox(
             height: 15,
           ),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.9,
+          Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,7 +150,7 @@ class _RentalsViewState extends State<RentalsView> {
                         top: 0, bottom: 0, left: 15, right: 10),
                     focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
-                          width: 0.5,
+                          width: 2,
                           color: Color(0xFFffffff),
                         ),
                         borderRadius: BorderRadius.circular(50.0)),
@@ -162,8 +162,8 @@ class _RentalsViewState extends State<RentalsView> {
           const SizedBox(
             height: 10,
           ),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.9,
+          Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -208,7 +208,7 @@ class _RentalsViewState extends State<RentalsView> {
                         top: 0, bottom: 0, left: 15, right: 10),
                     focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
-                          width: 0.5,
+                          width: 2,
                           color: Color(0xFFffffff),
                         ),
                         borderRadius: BorderRadius.circular(50.0)),

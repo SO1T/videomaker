@@ -2,6 +2,7 @@ import 'package:videomaker/apps/view/apps.dart';
 import 'package:videomaker/calculator/calculator.dart';
 import 'package:videomaker/home/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:videomaker/memory/memory.dart';
 import 'package:videomaker/rentals/rentals.dart';
 
 class App extends StatelessWidget {
@@ -21,6 +22,7 @@ class App extends StatelessWidget {
         '/focus-factor': (context) => const CalculatorPage(),
         '/apps': (context) => const AppsPage(),
         '/rentals': (context) => const RentalsPage(),
+        '/memory': (context) => const MemoryPage()
       },
       home: const HomeView(),
     );
